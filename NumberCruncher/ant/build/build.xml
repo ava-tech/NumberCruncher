@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<project name="Number Cruncher" default="compile" basedir=".">
+	
+	<target name="delete">
+		<delete dir="bin"/>
+		<delete dir="src"/>
+		<delete dir="test"/>
+		<delete dir="output"/>
+	</target>
+	
+	<target name="create" depends="delete">
+		<mkdir dir="bin"/>
+		<mkdir dir="src"/>
+		<mkdir dir="test"/>
+		<mkdir dir="output"/>
+	</target>
+	
+	<target name="copy" depends="create">
+		<copydir src="C:\SeleniumWorkspace\NumberCruncher\src" dest="C:\SeleniumWorkspace\NumberCruncher\ant\build\src"></copydir>
+		<copydir src="C:\SeleniumWorkspace\NumberCruncher\test" dest="C:\SeleniumWorkspace\NumberCruncher\ant\build\test"></copydir>
+	</target>
+	
+	<target name="compile" depends="copy">
+		<javac includeantruntime="true" srcdir="C:\SeleniumWorkspace\NumberCruncher\ant\build\src" destdir="C:\SeleniumWorkspace\NumberCruncher\ant\build\bin" includes="**/*.java"></javac>
+	</target>
+
+</project>	
