@@ -35,14 +35,21 @@ public class RequestParameter {
 		return map;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void getRequestParameter(){
+		
+		ArrayList<String> string = new ArrayList<>();
 		
 		RequestParameter rp = new RequestParameter();
 		Map<?,?> map = rp.getDataDictObject();
+
 		for(Entry<?, ?> e: map.entrySet()){
-			System.out.print(e.getKey());
-			System.out.println(e.getValue());
+			string = (ArrayList<String>) e.getValue();
+			System.out.println(e.getKey()+"-->"+string.get(0)+","+string.get(1));
+			//System.out.print(e.getKey());
+			//System.out.println(e.getValue());
 		}
+		
 	}
 
 	public static void main(String[] args) {
