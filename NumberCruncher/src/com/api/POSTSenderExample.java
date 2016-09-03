@@ -10,7 +10,7 @@ import java.net.URLEncoder;
 
 public class POSTSenderExample {
 	
-	public String echoCities(String query) throws IOException{
+	public String echoCuties(String query) throws IOException{
 		
 		String encodedQuery = URLEncoder.encode(query, "UTF-8");
 		String postData = "e=" + encodedQuery;
@@ -43,7 +43,7 @@ public class POSTSenderExample {
 
 	public static void main(String[] args) {
 		try{
-			System.out.println(new POSTSenderExample().echoCities("Hi There"));
+			System.out.println(new POSTSenderExample().echoCuties("Hi There"));
 		}catch(IOException e){
 			e.printStackTrace();
 		}
