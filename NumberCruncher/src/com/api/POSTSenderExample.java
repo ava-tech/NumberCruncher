@@ -16,6 +16,41 @@ import java.net.URLEncoder;
 
 public class POSTSenderExample {
 	
+	public String getMessages()throws IOException{
+		URL url = new URL("http://localhost:8088/messanger/webapi/messages/");
+		String postData = 
+				"{"
+						+ "'author':'Kaiser',"
+						+ "'created':'2016-09-19T00:31:46.386-07:00',"
+						+ "'message':'New York'"
+				+ "}";
+		String encodedQuery = URLEncoder.encode(postData, "UTF-8");
+		
+		HttpURLConnection con = (HttpURLConnection) url.openConnection();
+		con.setDoOutput(true);
+		con.setRequestMethod("POST");
+		con.setRequestProperty("Content-Type", "application/json");
+		//con.setRequestProperty("Content-Length", String.valueOf(postData));
+		
+		OutputStream os = con.getOutputStream();
+		os.write(encodedQuery.getBytes());
+		
+		
+		StringBuilder response = new StringBuilder();
+		BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+		
+		String line;
+		
+		while((line = br.readLine()) != null){
+			response.append(line);
+		}
+		
+		br.close();
+		os.close();
+		
+		return response.toString();
+	}
+	
 	public String echoCuties(String query) throws IOException{
 		
 		System.out.println(query.length());
@@ -52,18 +87,27 @@ public class POSTSenderExample {
 	}
 	
 	public static void main(String[] args) {
-		try{
+/*		try{
 			System.out.println(new POSTSenderExample().echoCuties("12345"));
 		}catch(IOException e){
 			e.printStackTrace();
 		}
+*/		
+		try {
+			new POSTSenderExample().getMessages();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		String param1 = "http://localhost:";
+		
+		
+		/*String param1 = "http://localhost:";
 		String param2 = "8088";
 		String param3 = "/servlets/com.mercurytours.servlet.SignonServlet/";
 		
 		FlightReservationLogin frl = new FlightReservationLogin(param1, param2, param3);
-		frl.loginFlightReservation();
+		frl.loginFlightReservation();*/
 
 
 	}

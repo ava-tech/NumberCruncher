@@ -127,7 +127,7 @@ public class DRGHttpsURLCookieHandle {
 
 
 		}
-		parser.close();
+		//parser.close();
 
 	}
 	
